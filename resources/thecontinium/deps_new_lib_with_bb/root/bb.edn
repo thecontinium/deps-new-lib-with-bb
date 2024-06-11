@@ -1,8 +1,11 @@
 {:tasks
  {:requires ([babashka.fs :as fs])
 
-  ci {:doc "Run  ci"
-      :task (apply clojure "-M:ci" *command-line-args*)}
+  test {:doc "Run ci"
+           :task (do (println "Running tests") (clojure "-T:build test"))}
+
+  ci {:doc "Run ci"
+           :task (do (println "Running ci") (clojure "-T:build ci"))}
 
   install {:doc "Install jar"
            :task (do (println "Installing jar") (clojure "-T:build install"))}
@@ -16,5 +19,5 @@
   conjure {:doc "Start nREPL for conjure"
            :task  (clojure "-M:repl/conjure")}
 
-  repl {:doc "Start nREPL"
+  nrepl {:doc "Start nREPL"
         :task  (clojure "-M:nrepl")}}}
